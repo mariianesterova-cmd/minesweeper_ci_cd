@@ -69,3 +69,4 @@ class Board:
         for row in self.grid:
             for cell in row:
                 cell.draw(screen, theme, nums)
+
