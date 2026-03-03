@@ -31,3 +31,4 @@ def test_cell_draw_mock():
     cell.draw(screen, theme, {})
 
     pygame.quit()
+
