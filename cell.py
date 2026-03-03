@@ -1,5 +1,6 @@
 import pygame
 
+
 class Cell:
     def __init__(self, row, col, size):
         self.row, self.col, self.size = row, col, size
@@ -12,7 +13,7 @@ class Cell:
     def draw(self, screen, theme, number_colors):
         padding = 2
         draw_rect = self.rect.inflate(-padding, -padding)
-        
+
         if self.is_revealed:
             pygame.draw.rect(screen, theme['revealed'], draw_rect, border_radius=6)
             if self.is_mine:
@@ -25,4 +26,4 @@ class Cell:
         else:
             pygame.draw.rect(screen, theme['hidden'], draw_rect, border_radius=6)
             if self.is_flagged:
-                pygame.draw.rect(screen, theme['flag'], self.rect.inflate(-self.size//1.8, -self.size//1.8), border_radius=2)
+                pygame.draw.rect(screen, theme['flag'], self.rect.inflate(-self.size // 1.8, -self.size // 1.8), border_radius=2)
