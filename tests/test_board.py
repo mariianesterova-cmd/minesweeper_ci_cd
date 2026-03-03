@@ -34,3 +34,4 @@ def test_board_sizes(rows, cols, mines):
 
     assert len(board.grid) == rows
     assert len(board.grid[0]) == cols
+
