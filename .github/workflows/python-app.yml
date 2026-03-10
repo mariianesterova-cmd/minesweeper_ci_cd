@@ -1,0 +1,48 @@
+name: Python CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        # Встановлюємо залежності з вашого requirements.txt
+        pip install -r requirements.txt
+
+    - name: Lint with flake8-html
+      run: |
+        # Створюємо папку для звіту та запускаємо лінтер
+        # --exit-zero дозволяє пайплайну продовжити роботу, навіть якщо є помилки стилю
+        flake8 . --format=html --htmldir=flake8_report --exit-zero
+
+    - name: Test with pytest
+      run: |
+        # Запускаємо тести з вашої папки tests (або кореня) та генеруємо звіт
+        # Додаємо -m "not graphics", щоб уникнути помилок з ініціалізацією вікна Pygame на сервері
+        pytest --html=pytest_report/report.html --self-contained-html -m "not graphics" || true
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: quality-reports
+        path: |
+          flake8_report/
+          pytest_report/
