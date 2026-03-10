@@ -2,4 +2,4 @@ pygame
 pytest
 pytest-html
 flake8
-flake8-html# CI tools
+flake8-html

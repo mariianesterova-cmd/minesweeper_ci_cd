@@ -1,9 +1,10 @@
+import pygame
+import pytest
 from cell import Cell
 import sys
 import os
-import pytest
-import pygame
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 
 def test_cell_initial_state():
@@ -31,4 +32,3 @@ def test_cell_draw_mock():
     cell.draw(screen, theme, {})
 
     pygame.quit()
-

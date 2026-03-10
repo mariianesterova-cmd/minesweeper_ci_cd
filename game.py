@@ -69,7 +69,7 @@ class Game:
             if e.type == pygame.QUIT:
                 self._back_to_menu()
             if e.type == pygame.MOUSEBUTTONDOWN:
-                self._handle_click(e)    
+                self._handle_click(e)
         if self.board.check_win():
             self._back_to_menu()
 
